@@ -415,8 +415,13 @@ void ChessBoard::movePiece(const piecemove move) {
     if (dodgeY) dodgeYval = 0.5;
     this->queueMovement(dodgeYval, dodgeXval, true);
     this->queueMovement(0, diffY, true); // move in Y
-    this->queueMovement(diffX, 0, true); // move in X
-    this->queueMovement(-dodgeYval, -dodgeXval, true);
+    if (diffX > 0 && dodgeY) {
+      this->queueMovement(diffX - 1, 0, true); // move in X
+      this->queueMovement(dodgeYval, -dodgeXval, true);
+    } else {
+      this->queueMovement(diffX, 0, true); // move in X
+      this->queueMovement(-dodgeYval, -dodgeXval, true);
+    }
     this->queueMovement(0, 0, false);
   }
 
