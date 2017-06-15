@@ -306,9 +306,10 @@ def doPlayer(player, player_type, pos=None, searcher=None):
             if res is None:
                 continue
             print("[DEBUG] arduino parsed move to " + str(res))
-            smove = sunfish_glue.luneburgToSunfishMove(res)
-            pos = pos.move(smove).rotate()
-            sunfish.print_pos(pos)
+            if pos is not None:
+                smove = sunfish_glue.luneburgToSunfishMove(res)
+                pos = pos.move(smove).rotate()
+                sunfish.print_pos(pos)
         elif len(move) == 4:
             sendRawMove(move)
         waitMoveEnd()

@@ -473,9 +473,12 @@ void ChessBoard::handle(void) {
     this->currentY += moveY;
 
     if (this->movementQueue.empty()) {
-      this->logger->println("[LOG] QE");
       this->printMatrix(Serial);
       this->printQueueStats(Serial);
+    }
+
+    if (this->movementQueue.empty() && this->pieceMoveQueue.empty()) {
+      this->logger->println("[LOG] QE");
     }
 
   } else if (!Steppers.isMoving() && this->movementQueue.empty() && !this->pieceMoveQueue.empty()) {

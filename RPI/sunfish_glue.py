@@ -1,3 +1,6 @@
+# This module provides various methods to convert between our own data format and
+# representation style for moves and matrix, to the Sunfish algorithm one
+
 translateRules = [
     ('T', 'R'),
     ('C', 'N'),
@@ -50,6 +53,7 @@ def sunfishToLuneburgRotatedMove(move):
         7 - move[3]
     )
 
+# If this module is run standalone as a script, some tests are carried out
 if __name__ == "__main__":
     summary = {
         'tests': 0,
